@@ -11,7 +11,7 @@ def get_width():
 
 
 def extract_words():
-    return [x for x in sys.stdin.read().replace('\n\n', ' __paragraph_break__ ').replace('\n', ' ').replace('\t', ' ').strip().split(' ') if not x == '']
+    return [x.strip(' ') for x in sys.stdin.read().replace('\n\n', ' __paragraph_break__ ').replace('\n', ' ').replace('\t', ' ').split(' ') if not x == '']
 
 
 def justify_line(words, width):
@@ -24,7 +24,7 @@ def justify_line(words, width):
     while extra_spaces > 0:
         words[index] += ' '
         index += 1
-        if index > spaces:
+        if index > spaces - 1:
             index = 0
         extra_spaces -= 1
     return words
@@ -40,7 +40,7 @@ def gen_lines(words, width):
         # create a new line if total cost of current line exceeds width
         # otherwise append word to current line
         cost = len(word) + 1
-        if counter + cost > width or word == '__paragraph_break__':
+        if counter + cost > width + 1 or word == '__paragraph_break__':
             lines.append(current_line)
             if not word == '__paragraph_break__':
                 current_line = [word]
