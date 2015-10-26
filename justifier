@@ -64,7 +64,6 @@ def gen_lines(words, width):
 if __name__ == '__main__':
     width = get_width()
     words = extract_words()
-    print(words)
     text = gen_lines(words, width)
     print(text)
 
