@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+from random import randint
 
 
 def get_width():
@@ -20,7 +21,7 @@ def justify_line(words, width):
     if actual_length / width < 0.6:
         return
     extra_spaces = width - actual_length
-    index = 0
+    index = randint(0, spaces-1)
     while extra_spaces > 0:
         words[index] += ' '
         index += 1
